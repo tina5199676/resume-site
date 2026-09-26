@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tina｜Design & Coding Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #18181b 0%, #23272f 100%);
+            color: #f3f3f3;
+            font-family: 'Segoe UI', 'Noto Sans TC', '微軟正黑體', Arial, sans-serif;
+        }
+
+        .navbar {
+            background: rgba(24, 24, 27, 0.95);
+            border-bottom: 1px solid #23272f;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            color: #00ffe7;
+            text-shadow: 0 0 8px #00ffe7;
+        }
+
+        .hero-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border: 4px solid #00ffe7;
+            box-shadow: 0 0 32px #00ffe744, 0 4px 24px rgba(0, 0, 0, 0.18);
+            background: #23272f;
+        }
+
+        .section-title {
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: #fff;
+            border-left: 6px solid #00ffe7;
+            padding-left: 12px;
+            text-shadow: 0 0 8px #00ffe799;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00ffe7 0%, #23272f 100%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #18181b;
+            border: 4px solid #00ffe7;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 12px #00ffe7aa;
+        }
+
+        .timeline-content {
+            margin-left: 40px;
+            background: #23272f;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #00ffe71a;
+            padding: 1rem 1.5rem;
+            color: #e0e0e0;
+        }
+
+        /* 工作經歷日期 */
+        .job-date {
+            display: block;
+            margin-top: 4px;
+            margin-bottom: 16px;
+            color: #00ffe7;
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .progress {
+            background: #23272f;
+            border-radius: 8px;
+            height: 1.2rem;
+        }
+
+        .progress-bar {
+            transition: width 1.2s cubic-bezier(.4, 0, .2, 1);
+            font-weight: 600;
+            font-size: 1rem;
+            background: linear-gradient(90deg, #00ffe7 0%, #23272f 100%);
+            color: #18181b;
+            box-shadow: 0 0 8px #00ffe7aa;
+        }
+
+        .project-card {
+            background: #23272f;
+            border: 1px solid #33353a;
+            border-radius: 18px;
+            transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+            box-shadow: 0 2px 16px #00ffe71a;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px #00ffe744;
+            border: 1.5px solid #00ffe7;
+        }
+
+        .card-title,
+        .card-text,
+        .btn-outline-primary {
+            color: #fff;
+        }
+
+        .btn-outline-primary {
+            border-color: #00ffe7;
+            color: #00ffe7;
+            background: transparent;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-outline-primary:hover {
+            background: #00ffe7;
+            color: #18181b;
+            box-shadow: 0 0 12px #00ffe7cc;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #00ffe7 0%, #23272f 100%);
+            border: none;
+            color: #18181b;
+            font-weight: 700;
+            box-shadow: 0 0 16px #00ffe744;
+        }
+
+        .btn-primary:hover {
+            background: #00ffe7;
+            color: #18181b;
+            box-shadow: 0 0 24px #00ffe7cc;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #00ffe7;
+            margin-right: 0.5rem;
+        }
+
+        .card {
+            background: #23272f;
+            color: #e0e0e0;
+        }
+
+        footer {
+            background: #18181b;
+            color: #00ffe7;
+            letter-spacing: 1px;
+            border-top: 1px solid #23272f;
+        }
+
+        a,
+        a:visited {
+            color: #00ffe7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #00ffe7;
+        }
+
+        /* 科技感線條裝飾 */
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tech-lines span {
+            position: absolute;
+            display: block;
+            background: linear-gradient(90deg, #00ffe7 0%, transparent 100%);
+            height: 2px;
+            width: 120px;
+            opacity: 0.18;
+            border-radius: 2px;
+            animation: moveLine 6s linear infinite;
+        }
+
+        .tech-lines span:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .tech-lines span:nth-child(2) {
+            top: 30%;
+            left: 60%;
+            animation-delay: 2s;
+        }
+
+        .tech-lines span:nth-child(3) {
+            top: 60%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .tech-lines span:nth-child(4) {
+            top: 80%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        @keyframes moveLine {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(60vw);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 科技感線條 -->
+    <div class="tech-lines">
+        <span></span><span></span><span></span><span></span>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Tina</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#hero">個人簡介</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">基本資料</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">專案經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">工作經驗</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">學習經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bio">自傳</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">專長</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">聯絡我</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="d-flex align-items-center min-vh-100 position-relative" data-aos="fade-up">
+            <div class="container position-relative" style="z-index:1;">
+                <div class="row align-items-center">
+                    <!-- 左側：大頭貼 -->
+                    <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                        <img src="picture/tina.jpg" alt="Tina" class="hero-img rounded-circle shadow">
+                    </div>
+                    <!-- 右側：自我介紹 -->
+                    <div class="col-lg-7 text-lg-start text-center">
+                        <h1 class="display-4 fw-bold mb-3" style="color:#00ffe7;text-shadow:0 0 16px #00ffe7cc;">
+                            Hello，我是 Tina！
+                        </h1>
+                        <h2 class="mb-4" style="color:#fff;opacity:.8;">UI/UX Designer</h2>
+                        <p class="lead mb-4" style="color:#e0e0e0;">具備 iOS、Android 與 IoT UI/UX 設計經驗，熟悉平台設計規範（Human
+                            Interface Guidelines / Material Design），能獨立完成 Wireframe、Prototype 並產出接近實際開發的介面設計。</p>
+                        <a href="#contact" class="btn btn-primary btn-lg shadow">聯絡我</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-5" data-aos="fade-right">
+            <div class="container">
+                <h2 class="section-title">基本資料</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <p>
+                            過去參與文化大學推廣教育部-全端工程師養成班，在那段期間擔任UI/UX
+                            Designer及前端工程師，並且與團隊協作完成多個專案。這段經歷不止讓我了解到完整開發流程，也為我後續擔任UI/UX
+                            Designer埋下良好的基礎，讓我可以設計出符合iOS、Android平台設計規範的手機介面。
+                        </p>
+                        <hr>
+                        <ul class="list-unstyled mt-4">
+                            <li><strong>姓名：</strong>陳婷如</li>
+                            <li><strong>性別：</strong>女性</li>
+                            <li><strong>信箱：</strong><a href="mailto:s5199676@gmail.com">s5199676@gmail.com</a></li>
+                            <li><strong>地址：</strong>新北市中和區</li>
+                            <li><strong>駕照：</strong>普通重機、普通小型車</li>
+                            <li><strong>交通工具：</strong>普通重機</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section id="projects" class="py-5" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">專案經歷</h2>
+                <div class="row g-4">
+                    <!-- 新增作品1 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">寵旅匠 Pet Craft</h5>
+                                <p class="card-text">寵物美容與住宿預約平台</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>產業新尖兵計劃-文化大學推廣教育部｜團體專案</strong></li>
+                                    <li><strong>擔任職位：</strong>UI/UX設計師</li>
+                                    <li><strong>負責項目：</strong>UI/UX介面設計與使用者體驗</li>
+                                    <li><strong>使用技術：</strong>應用 Persona 與 User Flow 規劃使用者體驗流程，並透過 Figma 完成 Wireframe 與
+                                        Prototype 設計。
+                                    </li>
+                                </ul>
+                                <a href="https://youtu.be/XwNGVPnd_Os" class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新增作品2 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">大腦活化 Brain Time</h5>
+                                <p class="card-text">失智症檢測平台</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>產業新尖兵計劃-文化大學推廣教育部｜團體專案</strong></li>
+                                    <li><strong>擔任職位：</strong>前端工程師</li>
+                                    <li><strong>負責項目：</strong>前端畫面開發與互動功能實作，優化使用者體驗與操作流程。</li>
+                                    <li><strong>使用技術：</strong>使用 Vue3 + Vite ，優化使用者操作流程，獨立完成7個頁面切版。
+                                    </li>
+                                </ul>
+                                <a href="https://youtu.be/Up4wePC1erk" class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新增作品3 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">設計靈感收藏系統</h5>
+                                <p class="card-text">Claude Code 輔助開發，使用 Vue3 + Django 實作 JWT 登入、收藏 CRUD、分類管理與 RESTful
+                                    API。</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>個人專案</strong></li>
+                                    <li>使用 Cloude Code 輔助開發，並協助進行系統架構設計輔助、API 架構整理、README 文件優化、前後端專案結構規劃。</li>
+                                </ul>
+                                <a href="https://github.com/tina0326-88/inspiration-collection-system"
+                                    class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新增作品4 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">學習筆記管理系統</h5>
+                                <p class="card-text">Claude Code 輔助開發，使用 React + Django 實作 RESTful API、搜尋與分頁功能。</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>個人專案</strong></li>
+                                    <li>使用 Cloude Code 輔助開發，並且協助進行前後端專案結構規劃、系統架構設計規劃、README 文件優化。</li>
+                                </ul>
+                                <a href="https://github.com/tina0326-88/learning-notes-platform"
+                                    class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新增作品5 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">設備報修管理系統</h5>
+                                <p class="card-text">使用 Vue 3 + Vuetify + Pinia 與 Laravel RESTful API
+                                    架構，整合設備管理與報修流程追蹤，提供儀表板統計與維修紀錄功能。</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>個人專案</strong></li>
+                                    <li>雖然此專案為個人專案，但是有透過這份專案練習前後端分離架構及 Git 版本控制，也練習 Git 分支命名規範。</li>
+                                </ul>
+                                <a href="https://github.com/tina0326-88/equipflow"
+                                    class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新增作品6 -->
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm project-card">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#00ffe7;">皮鞋電商平台系統</h5>
+                                <p class="card-text">使用 Vue 3 + Vite + Pinia + Tailwind CSS
+                                    架構，整合商品展示、購物車、會員管理與訂單流程，提供前台購物體驗與後台管理儀表板功能。</p>
+                                <ul class="list-unstyled mt-4">
+                                    <li><strong>個人專案</strong></li>
+                                    <li>此專案聚焦前端工程實踐，因此呈現前台購物體驗和後台管理系統的介面與互動邏輯，但是沒有撰寫後端邏輯，所以沒有串接金流。</li>
+                                </ul>
+                                <a href="https://github.com/tina0326-88/luvo-ecommerce-platform"
+                                    class="btn btn-outline-primary">查看內容</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <!-- Experience Timeline -->
+        <section id="experience" class="py-5" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">工作經驗</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h5 class="mb-1">絲米達整合行銷股份有限公司 美術設計師</h5>
+                            <span class="job-date">2024.08 - 2025.03</span>
+                            <div class="col-lg-6">
+                                <h5 class="fw-bold" style="color:#00ffe7;">工作內容</h5>
+                                <ul>
+                                    <li>離職原因：因公司組織調整進行職位縮減，無適合職缺可供安排</li>
+                                    <li>負責電商視覺設計，包含商品主圖、詳情頁、Banner及活動素材製作</li>
+                                    <li>規劃官網商品分類與上架管理，優化使用者瀏覽體驗</li>
+                                    <li>製作實體行銷物料(DM、POP、商品手冊)及包裝設計</li>
+                                    <li>統籌設計印刷流程，確保專案如期完成</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h5 class="mb-1">華陀扶元堂生藥科技股份有限公司 平面設計／美編</h5>
+                            <span class="job-date">2023.08 - 2023.11</span>
+                            <div class="col-lg-6">
+                                <h5 class="fw-bold" style="color:#00ffe7;">工作內容</h5>
+                                <ul>
+                                    <li>離職原因：尋求職涯成長機會</li>
+                                    <li>負責電商視覺設計，包含商品主圖、詳情頁、Banner 及活動素材製作</li>
+                                    <li>管理多平台商品上架與維護(WACA、蝦皮、MOMO 等)</li>
+                                    <li>設計社群媒體素材，維護品牌視覺一致性</li>
+                                    <li>製作動態圖像，提升品牌視覺形象</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Education Section -->
+        <section id="education" class="py-5" data-aos="fade-right">
+            <div class="container">
+                <h2 class="section-title">學習經歷</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <h5 class="fw-bold" style="color:#00ffe7;">文大推廣 x 程式驅動 全端設計工程師養成班</h5>
+                        <p>
+                            2025年4月參加 文大推廣 x 程式驅動 全端設計工程師養成班，系統化學習前端與後端技術，包含 HTML、CSS、JavaScript 及前端框架
+                            (Vue、React)、SQL 資料庫、後端基礎（Python Django、PHP Laravel），並完成多個實作專案。
+                        </p>
+                        <ul class="list-unstyled mt-4">
+                            <li>2025.04 - 2025.08</li>
+                            <li>取得結訓證書</li>
+                        </ul>
+                        <hr>
+                        <h5 class="fw-bold" style="color:#00ffe7;">中國科技大學-視覺傳達設計系</h5>
+                        <ul class="list-unstyled mt-4">
+                            <li>2018.09 - 2022.06</li>
+                            <li>學士畢業</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Bio Section -->
+        <section id="bio" class="py-5" data-aos="fade-right">
+            <div class="container">
+                <h2 class="section-title">自傳</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <p>
+                            <strong>UI/UX 實務經驗</strong><br>
+                            曾參與 IoT App 的 UI/UX 設計工作，負責 iOS 與 Android 行動應用介面的設計優化與使用者流程規劃，並依據 iOS Human Interface
+                            Guidelines（HIG）與 Android (Material Design)
+                            設計規範進行跨平台介面設計。期間與工程師及加我科技相關團隊密切協作，將設計需求轉化為可實作的產品功能。<br>
+                            該專案涉及 IoT 裝置與 App 的互動流程設計，我參與 iOS 與 Android 平台的裝置控制流程及操作介面優化，並針對不同平台的操作邏輯與使用情境提出 UX
+                            改善建議，使整體操作流程更直覺且符合實際使用需求。同時持續優化介面一致性與互動體驗，以提升產品易用性與操作流暢度。<br>
+                            <hr>
+                            <strong>過去培訓經驗與專案執行</strong><br>
+                            曾於文化大學推廣教育部參與程式設計培訓，與培訓學員共同完成寵旅匠與大腦活化開發並成功上線。過程中，我參與 UI/UX
+                            設計、前端介面製作以及功能整合，累積從設計到開發的完整流程經驗，也了解每個UI/UX設計畫面與工程師開發之間的連結性，也為後續的UI/UX設計工作埋下良好的設計基礎。<br>
+                            <hr>
+                            <strong>個人特質與未來目標</strong><br>
+                            我認為自己的優勢在於主動學習與持續優化問題的能力。面對新的需求或挑戰時，我會透過查詢資料、實作測試與反覆調整來提升能力，未來希望持續朝 UI/UX
+                            與前端整合方向發展，成為兼具使用者體驗思維與實作能力的產品設計人才。<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section id="skills" class="py-5" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">專長</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>UI / UX設計</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Figma / Mockup / Wireframe / Prototype / Autolayout / Component / Dev Mode</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%;">100%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Design System 概念</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Human Interface Guidelines / Material Design 概念</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;">80%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Adobe Illustrator</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;">80%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Adobe Photoshop</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>前端框架 Vue.js </label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;">70%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>前端框架輔助工具 Bootstrap</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 80%;">80%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>JavaScript</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%;">70%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>HTML/CSS</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Git</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>GitHub</label>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 95%;">95%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact" class="py-5" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">聯絡我</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card shadow-sm p-4">
+                            <div class="mb-3">
+                                <span class="contact-icon"><i class="bi bi-envelope"></i></span>
+                                <a href="mailto:s5199676@gmail.com">s5199676@gmail.com</a>
+                            </div>
+                            <div class="mb-3">
+                                <span class="contact-icon"><i class="bi bi-github"></i></span>
+                                <a href="https://github.com/tina5199676" target="_blank">GitHub</a>
+                            </div>
+                            <div class="mb-3">
+                                <span class="contact-icon"><i class="bi bi-behance"></i></span>
+                                <a href="https://www.behance.net/880ca557" target="_blank">Behance</a>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="mailto:s5199676@gmail.com" class="btn btn-primary btn-lg">Email 聯絡我</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-4 text-center">
+            <div class="container">
+                &copy; 2026 Tina. All rights reserved.
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Bootstrap Icons CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 600,
+            once: true
+        });
+        // 平滑滾動
+        document.querySelectorAll('a.nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        // 技能條動畫
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+
+</html>
