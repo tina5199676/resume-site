@@ -12,7 +12,7 @@
 
 ## 網站連結
 
-https://resume-site-red-nine.vercel.app/
+[https://resume-site-red-nine.vercel.app/](https://resume-site-red-one.vercel.app/)
 
 ## 專案特色
 
